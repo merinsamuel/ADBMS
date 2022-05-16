@@ -1,0 +1,22 @@
+create database SCHOOL1;
+use SCHOOL;
+show databases;
+create table student(id int primary key auto_increment,name varchar(20),department varchar(30));
+desc student;
+insert into student values(1,'abhilash','mca');
+insert into student values(2,'nayana','mca');
+insert into student values(3,'anu','mca');
+insert into student values(4,'ammu','mba');
+commit;
+select* from student;
+insert into student values(5,'anju','bca');
+rollback;
+insert into student values(5,'anju','bca');
+savepoint t1;
+insert into student values(6,'varun','bca');
+select* from student;
+rollback to t1;
+select* from student;
+insert into student values(6,'varun','bca');
+select* from student;
+
