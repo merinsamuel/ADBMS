@@ -1,0 +1,17 @@
+use mcetmca2021;
+select*from customer;
+select*from product;
+select pname,price from product;
+select distinct prd_id from invoice_item;
+select price from product where price between 50 and 150;
+select*from customer where city in('kottayam','pattam');
+select*from invoice_master where inv_date between '2011-03-2' and '2020-05-11';
+select * from customer where city not in ('kottayam'); 
+select * from customer where phn_no IS NULL;
+select name from customer order by name desc;
+select * from customer order by city asc,name desc;
+select name from customer where name like binary 'a%';
+select name from customer where name like binary '%n%' or binary'%a%';
+select name from customer where name like '___%';
+select name from customer where name like binary '_n%';
+select name from customer where name like binary 'a__%';
