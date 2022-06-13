@@ -1,0 +1,153 @@
+use INVOICE
+'switched to db INVOICE'
+db.createCollection("CUSTOMER")
+{ ok: 1 }
+db.createCollection("PRODUCT")
+{ ok: 1 }
+show collections
+CUSTOMER
+PRODUCT
+db.CUSTOMER.insertOne({name: "Anju",address: "Anju Bhavan",city: "Malapuram",age:"40"
+,phone_no: "12356789"})
+{ acknowledged: true,
+  insertedId: ObjectId("62a6ba438dedea025ae6119e") }
+db.CUSTOMER.insertMany([{name: "Sarath",address: "Sarath Nivas",city: "Calicut",age:"45"
+,phone_no: "9886409789"},{name: "Nayana",address: "Nayans",city: "Kozhikode",age:"50"
+,phone_no: "97890642"},{name: "jimin",address: "abcd",city: "kozhikode",age:"34",phone_no:
+"9863665432"},{name: "Surya",address: "white house",city: "wandoor",age:"43",phone_no:
+"9048857036"}])
+{ acknowledged: true,
+  insertedIds: 
+   { '0': ObjectId("62a6ba6a8dedea025ae6119f"),
+     '1': ObjectId("62a6ba6a8dedea025ae611a0"),
+     '2': ObjectId("62a6ba6a8dedea025ae611a1"),
+     '3': ObjectId("62a6ba6a8dedea025ae611a2") } }
+db.PRODUCT.insertMany([{productName:"pen",price:"10",quantity:"10"},{productName:"pencil",price:"10",quantity:"3"},{productName:"sharpner",price:"5",quantity:"4"},{productName:"eraser",price:"8",quantity:"7"}])
+{ acknowledged: true,
+  insertedIds: 
+   { '0': ObjectId("62a6bb298dedea025ae611a3"),
+     '1': ObjectId("62a6bb298dedea025ae611a4"),
+     '2': ObjectId("62a6bb298dedea025ae611a5"),
+     '3': ObjectId("62a6bb298dedea025ae611a6") } }
+db.CUSTOMER.find()
+{ _id: ObjectId("62a6ba438dedea025ae6119e"),
+  name: 'Anju',
+  address: 'Anju Bhavan',
+  city: 'Malapuram',
+  age: '40',
+  phone_no: '12356789' }
+{ _id: ObjectId("62a6ba6a8dedea025ae6119f"),
+  name: 'Sarath',
+  address: 'Sarath Nivas',
+  city: 'Calicut',
+  age: '45',
+  phone_no: '9886409789' }
+{ _id: ObjectId("62a6ba6a8dedea025ae611a0"),
+  name: 'Nayana',
+  address: 'Nayans',
+  city: 'Kozhikode',
+  age: '50',
+  phone_no: '97890642' }
+{ _id: ObjectId("62a6ba6a8dedea025ae611a1"),
+  name: 'jimin',
+  address: 'abcd',
+  city: 'kozhikode',
+  age: '34',
+  phone_no: '9863665432' }
+{ _id: ObjectId("62a6ba6a8dedea025ae611a2"),
+  name: 'Surya',
+  address: 'white house',
+  city: 'wandoor',
+  age: '43',
+  phone_no: '9048857036' }
+db.CUSTOMER.find().pretty()
+{ _id: ObjectId("62a6ba438dedea025ae6119e"),
+  name: 'Anju',
+  address: 'Anju Bhavan',
+  city: 'Malapuram',
+  age: '40',
+  phone_no: '12356789' }
+{ _id: ObjectId("62a6ba6a8dedea025ae6119f"),
+  name: 'Sarath',
+  address: 'Sarath Nivas',
+  city: 'Calicut',
+  age: '45',
+  phone_no: '9886409789' }
+{ _id: ObjectId("62a6ba6a8dedea025ae611a0"),
+  name: 'Nayana',
+  address: 'Nayans',
+  city: 'Kozhikode',
+  age: '50',
+  phone_no: '97890642' }
+{ _id: ObjectId("62a6ba6a8dedea025ae611a1"),
+  name: 'jimin',
+  address: 'abcd',
+  city: 'kozhikode',
+  age: '34',
+  phone_no: '9863665432' }
+{ _id: ObjectId("62a6ba6a8dedea025ae611a2"),
+  name: 'Surya',
+  address: 'white house',
+  city: 'wandoor',
+  age: '43',
+  phone_no: '9048857036' }
+db.PRODUCT.find().pretty()
+{ _id: ObjectId("62a6bb298dedea025ae611a3"),
+  productName: 'pen',
+  price: '10',
+  quantity: '10' }
+{ _id: ObjectId("62a6bb298dedea025ae611a4"),
+  productName: 'pencil',
+  price: '10',
+  quantity: '3' }
+{ _id: ObjectId("62a6bb298dedea025ae611a5"),
+  productName: 'sharpner',
+  price: '5',
+  quantity: '4' }
+{ _id: ObjectId("62a6bb298dedea025ae611a6"),
+  productName: 'eraser',
+  price: '8',
+  quantity: '7' }
+db.CUSTOMER.find({"city":"kochi"}).pretty()
+db.CUSTOMER.deleteOne({city:"Calicut"})
+{ acknowledged: true, deletedCount: 1 }
+db.CUSTOMER.updateOne({"city":"wandoor"},{$set:{"city":"kochi"}})
+{ acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0 }
+db.CUSTOMER.find({"city":"kochi"}).pretty()
+{ _id: ObjectId("62a6ba6a8dedea025ae611a2"),
+  name: 'Surya',
+  address: 'white house',
+  city: 'kochi',
+  age: '43',
+  phone_no: '9048857036' }
+db.CUSTOMER.deleteOne({city:"Calicut"})
+{ acknowledged: true, deletedCount: 0 }
+db.CUSTOMER.find().pretty()
+{ _id: ObjectId("62a6ba438dedea025ae6119e"),
+  name: 'Anju',
+  address: 'Anju Bhavan',
+  city: 'Malapuram',
+  age: '40',
+  phone_no: '12356789' }
+{ _id: ObjectId("62a6ba6a8dedea025ae611a0"),
+  name: 'Nayana',
+  address: 'Nayans',
+  city: 'Kozhikode',
+  age: '50',
+  phone_no: '97890642' }
+{ _id: ObjectId("62a6ba6a8dedea025ae611a1"),
+  name: 'jimin',
+  address: 'abcd',
+  city: 'kozhikode',
+  age: '34',
+  phone_no: '9863665432' }
+{ _id: ObjectId("62a6ba6a8dedea025ae611a2"),
+  name: 'Surya',
+  address: 'white house',
+  city: 'kochi',
+  age: '43',
+  phone_no: '9048857036' }
